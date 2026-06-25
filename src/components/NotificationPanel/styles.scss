@@ -62,7 +62,8 @@
     }
   }
 
-  &__settings {
+  // Play/Stop toggle for the incoming-notification simulator.
+  &__simulate {
     @include button-reset;
     @include focus-ring;
     display: inline-flex;
@@ -79,6 +80,17 @@
     &:hover {
       background: $color-bg-subtle;
       color: $color-text;
+    }
+
+    // Highlighted while the simulator is running.
+    &.is-active {
+      background: $color-primary;
+      color: $color-text-on-accent;
+
+      &:hover {
+        background: $color-primary-strong;
+        color: $color-text-on-accent;
+      }
     }
   }
 }

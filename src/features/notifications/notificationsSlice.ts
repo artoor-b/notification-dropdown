@@ -1,16 +1,19 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Notification } from "./types";
 import { mockNotifications } from "./mockData";
-import { applyPersistedReadState } from "./persistence";
+import { applyPersistedReadState, loadSimulating } from "./persistence";
 
 export interface NotificationsState {
   items: Notification[];
+  // Whether the incoming-notification simulator is running.
+  simulating: boolean;
 }
 
 const initialState: NotificationsState = {
   // Seed from the mock feed, then overlay any read-state the user has
   // accumulated in a previous session.
   items: applyPersistedReadState(mockNotifications),
+  simulating: loadSimulating(),
 };
 
 const notificationsSlice = createSlice({
@@ -27,8 +30,19 @@ const notificationsSlice = createSlice({
     markAllAsRead(state) {
       for (const n of state.items) n.read = true;
     },
+
+    /** Add a new (unread) notification to the top of the feed. */
+    addNotification(state, action: PayloadAction<Notification>) {
+      state.items.unshift(action.payload);
+    },
+
+    /** Start/stop the incoming-notification simulator. */
+    toggleSimulation(state) {
+      state.simulating = !state.simulating;
+    },
   },
 });
 
-export const { markAsRead, markAllAsRead } = notificationsSlice.actions;
+export const { markAsRead, markAllAsRead, addNotification, toggleSimulation } =
+  notificationsSlice.actions;
 export default notificationsSlice.reducer;

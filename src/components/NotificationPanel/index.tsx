@@ -4,14 +4,16 @@ import clsx from "clsx";
 import NotificationHeader from "../NotificationHeader";
 import NotificationTabs from "../NotificationTabs";
 import NotificationList from "../NotificationList";
-import { CheckCheck, Settings } from "lucide-react";
+import { CheckCheck, Pause, Play } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   markAllAsRead,
   markAsRead,
+  toggleSimulation,
 } from "../../features/notifications/notificationsSlice";
 import {
   makeSelectNotificationsByFilter,
+  selectIsSimulating,
   selectUnreadCount,
 } from "../../features/notifications/selectors";
 import type { NotificationFilter } from "../../features/notifications/types";
@@ -33,6 +35,7 @@ const NotificationPanel = () => {
     selectByFilter(state, filter),
   );
   const unreadCount = useAppSelector(selectUnreadCount);
+  const simulating = useAppSelector(selectIsSimulating);
 
   return (
     <section
@@ -58,10 +61,21 @@ const NotificationPanel = () => {
 
           <button
             type="button"
-            className={clsx(`${CN}__settings`)}
-            aria-label="Notification settings"
+            className={clsx(`${CN}__simulate`, simulating && "is-active")}
+            onClick={() => dispatch(toggleSimulation())}
+            aria-pressed={simulating}
+            aria-label={
+              simulating
+                ? "Stop simulating notifications"
+                : "Start simulating notifications"
+            }
+            title={simulating ? "Stop simulation" : "Simulate notifications"}
           >
-            <Settings size={20} aria-hidden="true" />
+            {simulating ? (
+              <Pause size={18} aria-hidden="true" />
+            ) : (
+              <Play size={18} aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>

@@ -9,6 +9,9 @@ import type { NotificationFilter } from "./types";
 export const selectAllNotifications = (state: RootState) =>
   state.notifications.items;
 
+export const selectIsSimulating = (state: RootState) =>
+  state.notifications.simulating;
+
 export const selectUnreadCount = createSelector(
   selectAllNotifications,
   (items) => items.reduce((count, n) => (n.read ? count : count + 1), 0),

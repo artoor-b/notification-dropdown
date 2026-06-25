@@ -1,10 +1,13 @@
 import "./App.scss";
 import clsx from "clsx";
 import NotificationCenter from "./components/NotificationCenter";
+import { useNotificationSimulator } from "./features/notifications/useNotificationSimulator";
 
 const CN = "app";
 
 function App() {
+  useNotificationSimulator();
+
   return (
     <div className={clsx(CN)}>
       <header className={clsx(`${CN}__topbar`)}>

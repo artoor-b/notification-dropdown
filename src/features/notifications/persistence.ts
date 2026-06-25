@@ -10,6 +10,7 @@ import type { Notification } from "./types";
 // the design on first load yet still survives a refresh.
 
 const STORAGE_KEY = "notifications:read-state";
+const SIMULATING_KEY = "notifications:simulating";
 
 type ReadStateMap = Record<string, boolean>;
 
@@ -45,6 +46,21 @@ export const persistReadState = (notifications: Notification[]): void => {
 
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(readState));
+  } catch {
+    // Storage full / unavailable - ignore.
+  }
+};
+
+/** Whether the notification simulator was running last session. */
+export const loadSimulating = (): boolean => {
+  if (typeof window === "undefined") return false;
+  return window.localStorage.getItem(SIMULATING_KEY) === "true";
+};
+
+export const persistSimulating = (simulating: boolean): void => {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(SIMULATING_KEY, String(simulating));
   } catch {
     // Storage full / unavailable - ignore.
   }
