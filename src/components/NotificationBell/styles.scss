@@ -1,0 +1,29 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.notification-bell {
+  @include button-reset;
+  @include focus-ring;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-pill;
+  color: $color-text;
+  transition:
+    background-color $duration-fast $ease-out,
+    color $duration-fast $ease-out;
+
+  &:hover,
+  &--active {
+    background: $color-bg-subtle;
+    color: $color-primary;
+  }
+
+  &__badge {
+    top: 2px;
+    right: 2px;
+  }
+}

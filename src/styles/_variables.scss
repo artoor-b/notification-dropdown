@@ -1,0 +1,65 @@
+// Design tokens
+
+// Brand / accent
+$color-primary: #2f6fed; // avatar circles, active accents
+$color-primary-strong: #1f5fe0; // hover / pressed
+$color-link: #2f80ed; // "Mark all as read" text
+$color-unread-dot: #2d7ff9; // blue dot on unread rows
+
+// Status
+$color-danger: #ff385c; // unread count badge
+$color-maroon: #6e2a3a; // "cancelled" notification icon
+
+// Text
+$color-text: #28344e; // primary / titles
+$color-text-soft: #44516b; // read-notification copy
+$color-text-muted: #8a94a6; // timestamps, secondary copy
+$color-text-on-accent: #ffffff;
+
+// Surfaces
+$color-bg-app: #f4f3fb; // page background
+$color-bg-panel: #ffffff; // dropdown surface
+$color-bg-unread: #eef1f7; // highlighted unread row
+$color-bg-unread-hover: #e4e9f2; // unread row hover
+$color-bg-hover: #f6f8fb; // row hover
+$color-bg-subtle: #eef1f7; // inactive tab / icon halo
+$color-border: #e5e8ef;
+
+// Typography
+$font-family:
+  "Inter",
+  "Segoe UI",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Helvetica Neue",
+  Arial,
+  sans-serif;
+
+// Radii
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-pill: 999px;
+
+// Spacing scale (4px base)
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+
+// Elevation
+$shadow-panel: 0 12px 40px rgba(28, 39, 76, 0.16);
+$shadow-badge: 0 0 0 2px #ffffff;
+
+// Motion
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$duration-fast: 140ms;
+$duration-base: 200ms;
+
+// Layout
+$panel-width: 460px;
+$panel-max-height: 640px;
+$panel-viewport-gap: 96px; // space reserved for the trigger row + margins
+$z-dropdown: 1000;

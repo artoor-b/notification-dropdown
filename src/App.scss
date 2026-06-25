@@ -1,0 +1,40 @@
+@use "./styles/variables" as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__topbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: $space-3 $space-6;
+    background: $color-bg-panel;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-6;
+  }
+
+  &__hint {
+    text-align: center;
+    color: $color-text-muted;
+
+    h1 {
+      margin: 0 0 $space-2;
+      font-size: 28px;
+      color: $color-text;
+    }
+
+    p {
+      margin: 0;
+      font-size: 15px;
+    }
+  }
+}

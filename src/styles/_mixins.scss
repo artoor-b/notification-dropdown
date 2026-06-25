@@ -1,0 +1,38 @@
+@use "variables" as *;
+
+// Reset a <button> back to a neutral, styleable element.
+@mixin button-reset {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+// Consistent keyboard focus ring for interactive elements.
+@mixin focus-ring($color: $color-primary) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}
+
+// Scrollbar for the notifications list.
+@mixin slim-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(28, 39, 76, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(28, 39, 76, 0.2);
+    border-radius: $radius-pill;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

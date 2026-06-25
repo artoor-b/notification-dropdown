@@ -1,0 +1,51 @@
+@use "../../styles/variables" as *;
+
+.notification-center {
+  position: relative;
+  display: inline-flex;
+
+  &__triggers {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-3;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + #{$space-3});
+    right: 0;
+    z-index: $z-dropdown;
+    outline: none;
+
+    // Closed (resting) state.
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top right;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity $duration-base $ease-out,
+      transform $duration-base $ease-out,
+      visibility 0s linear $duration-base;
+
+    &--open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      visibility: visible;
+      pointer-events: auto;
+      transition:
+        opacity $duration-base $ease-out,
+        transform $duration-base $ease-out,
+        visibility 0s;
+    }
+  }
+
+  @media (max-width: 560px) {
+    &__dropdown {
+      position: fixed;
+      top: 66px;
+      right: $space-4;
+      left: $space-4;
+    }
+  }
+}

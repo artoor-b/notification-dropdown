@@ -1,0 +1,73 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.notification-item {
+  list-style: none;
+
+  &__body {
+    @include button-reset;
+    @include focus-ring;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    width: 100%;
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    text-align: left;
+    transition: background-color $duration-fast $ease-out;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  &__message {
+    color: $color-text;
+    font-size: 15px;
+    line-height: 1.35;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  &__time {
+    color: $color-text-muted;
+    font-size: 13px;
+  }
+
+  &__dot {
+    flex: 0 0 auto;
+    width: 10px;
+    height: 10px;
+    border-radius: $radius-pill;
+    background: $color-unread-dot;
+  }
+
+  // #Unread
+  &--unread {
+    .notification-item__body {
+      background: $color-bg-unread;
+      cursor: pointer;
+
+      &:hover {
+        background: $color-bg-unread-hover;
+      }
+    }
+  }
+
+  // #Read
+  &--read {
+    .notification-item__message {
+      color: $color-text-soft;
+    }
+
+    .notification-icon {
+      box-shadow: 0 0 0 5px $color-bg-subtle;
+    }
+  }
+}

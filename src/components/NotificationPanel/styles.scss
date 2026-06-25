@@ -1,0 +1,90 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.notification-panel {
+  display: flex;
+  flex-direction: column;
+  width: $panel-width;
+  max-width: 100%;
+  // Never taller than the space available below the trigger
+  max-height: min(#{$panel-max-height}, calc(100vh - #{$panel-viewport-gap}));
+  background: $color-bg-panel;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-panel;
+  overflow: hidden;
+
+  &__tabpanel {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
+    padding: 0 $space-5 $space-3;
+    flex-wrap: wrap;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+  }
+
+  &__mark-all {
+    @include button-reset;
+    @include focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    color: $color-link;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: $radius-sm;
+    padding: $space-1 $space-2;
+    transition:
+      color $duration-fast $ease-out,
+      opacity $duration-fast $ease-out;
+
+    &:hover:not(:disabled) {
+      color: $color-primary-strong;
+    }
+
+    &:disabled {
+      color: $color-text-muted;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__settings {
+    @include button-reset;
+    @include focus-ring;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-sm;
+    color: $color-text-muted;
+    transition:
+      background-color $duration-fast $ease-out,
+      color $duration-fast $ease-out;
+
+    &:hover {
+      background: $color-bg-subtle;
+      color: $color-text;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .notification-panel {
+    width: 100%;
+  }
+}

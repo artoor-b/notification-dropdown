@@ -1,0 +1,23 @@
+@use "../../styles/variables" as *;
+
+.notification-header {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  padding: $space-5 $space-5 $space-3;
+
+  &__title {
+    position: relative;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: $color-text;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0px;
+    right: -20px;
+  }
+}

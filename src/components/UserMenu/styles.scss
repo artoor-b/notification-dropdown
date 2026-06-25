@@ -1,0 +1,55 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.user-menu {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-2;
+  border-radius: $radius-pill;
+  color: $color-text;
+  transition: background-color $duration-fast $ease-out;
+
+  &:hover,
+  &--active {
+    background: $color-bg-subtle;
+  }
+
+  &__avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: $radius-pill;
+    background: $color-primary;
+    color: $color-text-on-accent;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  &__name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  &__chevron {
+    color: $color-text-muted;
+    transition: transform $duration-base $ease-out;
+  }
+
+  &--active &__chevron {
+    transform: rotate(180deg);
+  }
+
+  // Only avatar on small screens.
+  @media (max-width: 560px) {
+    &__name {
+      display: none;
+    }
+  }
+}
